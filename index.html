@@ -1,0 +1,720 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Maira Gomez — archivo. Redes, editorial y dirección de arte. Licenciada en Artes Digitales, Universidad Nacional de Quilmes.">
+<meta property="og:title" content="Maira Gomez — archivo">
+<meta property="og:description" content="Redes, editorial y dirección de arte.">
+<meta property="og:image" content="archivo/sting-01.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 fill=%27%23FBC7CE%27/%3E%3Ctext x=%2716%27 y=%2723%27 font-family=%27Arial%27 font-weight=%27700%27 font-size=%2718%27 text-anchor=%27middle%27 fill=%27%231C1A1A%27%3EM%3C/text%3E%3C/svg%3E">
+<title>Maira Gomez — archivo</title>
+</head>
+<body>
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&amp;family=Sorts+Mill+Goudy:ital@0;1&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F3EEE6}
+a{color:inherit}a:hover{opacity:.65}
+.paper{background-color:#F3EEE6}
+.rosa{background-color:#F9DDE2}
+.blush{background-color:#F4D3DC}
+.grain{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:50;mix-blend-mode:multiply}
+.vtex{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;mix-blend-mode:multiply}
+.note{font-family:'Sorts Mill Goudy',serif;font-style:italic;font-size:15px;line-height:1.5}
+.caps{font-family:'Jost',sans-serif;font-weight:500;text-transform:uppercase;letter-spacing:.02em}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* título: las palabras se mueven cuando las tocás */
+.hl{display:flex;align-items:flex-end;container-type:inline-size}
+.slot{flex:0 0 0%;flex-grow:0;min-width:0;overflow:hidden;transition:flex-grow 1s cubic-bezier(.7,0,.2,1)}
+.slot.on{flex-grow:1}
+.slot.sb{display:flex;justify-content:flex-end}
+.sb span{flex:0 1 calc(100cqw / 3);width:auto;min-width:0;margin-left:24px;transition:opacity .3s ease,flex-basis .8s cubic-bezier(.6,0,.2,1)}
+.slot.on.sb span{transition:opacity .6s ease .65s,flex-basis .8s cubic-bezier(.6,0,.2,1)}
+.sa span{padding-right:24px}
+.slot span{display:block;width:calc(100cqw / 3);padding:0 0 calc(clamp(52px,11.5vw,190px) * .08 - 5px);box-sizing:border-box;white-space:pre-line;opacity:0;transition:opacity .3s ease}
+.hnote{font-family:'Sorts Mill Goudy',serif;font-size:19px;line-height:1.35}
+.slot.on span{opacity:1;transition:opacity .6s ease .65s}
+.hword{font-family:'Jost',sans-serif;font-weight:600;text-transform:uppercase;font-size:clamp(52px,11.5vw,190px);line-height:.86;letter-spacing:-.02em;white-space:nowrap;border:0;padding:0;margin:0;background:transparent;color:inherit;cursor:pointer;transition:transform .25s ease}
+@media (hover:hover){.hword:hover{transform:translateX(6px)}
+.hl.r .hword:hover{transform:translateX(-6px)}}
+.hword:focus-visible{outline:2px solid #1C1A1A;outline-offset:6px}
+
+/* álbum con papel vegetal y cinta rosa */
+.albumw{position:relative}
+.album{position:relative;display:block;width:100%;aspect-ratio:4/5;border:0;padding:0;background:transparent;cursor:pointer;perspective:1400px;text-align:left;font:inherit;color:#1C1A1A}
+.album:focus-visible{outline:2px solid #1C1A1A;outline-offset:8px}
+.album{cursor:crosshair;touch-action:pan-y}
+.art{position:absolute;inset:0;overflow:hidden}
+.art > div,.art > img{position:absolute}
+.bw{filter:grayscale(1) contrast(.95) brightness(1.03)}
+.color{filter:saturate(1.2);-webkit-mask:radial-gradient(circle var(--r,115px) at var(--x) var(--y),#000 55%,transparent 100%);mask:radial-gradient(circle var(--r,115px) at var(--x) var(--y),#000 55%,transparent 100%)}
+.album:not(.is-open) .vellum{-webkit-mask:radial-gradient(circle calc(var(--r,115px) - 5px) at var(--x) var(--y),rgba(0,0,0,.4) 40%,#000 100%);mask:radial-gradient(circle calc(var(--r,115px) - 5px) at var(--x) var(--y),rgba(0,0,0,.4) 40%,#000 100%)}
+.album.is-open .color{-webkit-mask:none;mask:none}
+.arttxt{left:20px;bottom:20px;font-family:'Sorts Mill Goudy',serif;font-size:13px;color:#F3EEE6}
+.vellum{position:absolute;inset:0;transform-origin:50% 0%;display:flex;flex-direction:column;justify-content:space-between;padding:24px;box-sizing:border-box;
+background:linear-gradient(160deg,rgba(255,252,248,.80),rgba(246,238,234,.62) 55%,rgba(255,252,248,.72));
+backdrop-filter:blur(7px) saturate(.85);-webkit-backdrop-filter:blur(7px) saturate(.85);
+box-shadow:0 1px 0 rgba(255,255,255,.7) inset,0 10px 24px rgba(60,40,30,.10);
+transition:transform .9s cubic-bezier(.2,.8,.2,1),opacity .9s ease,box-shadow .9s ease}
+.album.is-open .vellum{transform:rotateX(-62deg) translateY(-4%);box-shadow:0 30px 40px rgba(60,40,30,.16)}
+.album.is-open .vellum{opacity:.5}
+.tape{position:absolute;top:-14px;width:96px;height:30px;z-index:3;pointer-events:none;background:rgba(255,92,168,.72);mix-blend-mode:multiply;box-shadow:0 1px 2px rgba(0,0,0,.06)}
+.tape.l{left:50%;margin-left:-48px;transform:rotate(-3deg)}
+.tape.r{display:none}
+
+.platesw{max-height:0;overflow:hidden;display:flex;flex-direction:column;gap:10px;transition:max-height 1s cubic-bezier(.2,.8,.2,1)}
+.platesw.on{max-height:6400px}
+.platesw.multi{gap:8px}
+.platesw.multi .plates{padding-bottom:22px}
+.platesw.multi .plates img{height:300px}
+.fmt{margin:28px 0 6px;padding-top:14px;border-top:1px solid #1C1A1A;font-family:'Jost',sans-serif;font-weight:600;font-size:22px;text-transform:uppercase;letter-spacing:.01em}
+.fmt:first-child{margin-top:0}
+.plates{display:flex;gap:16px;overflow-x:auto;padding:4px 0 14px;scroll-snap-type:x mandatory}
+.plates img{flex:0 0 auto;height:440px;aspect-ratio:4/5;object-fit:cover;scroll-snap-align:start;box-shadow:0 6px 16px rgba(60,40,30,.12)}
+.tabs{display:flex;gap:6px;padding:0 24px;align-items:flex-end;flex-wrap:wrap}
+.tabs button{display:flex;align-items:flex-start;gap:10px;border:0;cursor:pointer;padding:22px 30px 18px;border-radius:16px 16px 0 0;font-family:'Jost',sans-serif;font-weight:600;font-size:clamp(30px,5vw,72px);line-height:.9;letter-spacing:-.015em;text-transform:uppercase;color:#1C1A1A;transform:translateY(12px);box-shadow:0 -1px 0 rgba(28,26,26,.12) inset;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.tabs button .note{font-size:12px;letter-spacing:0;font-weight:400;padding-top:4px}
+.tabs button:hover{transform:translateY(5px)}
+.tabs button.on{transform:none;box-shadow:none}
+.tabs button:focus-visible{outline:2px solid #1C1A1A;outline-offset:-6px}
+.panel{display:none;padding:40px 24px 24px;border-radius:0 16px 0 0}
+.panel.on{display:block}
+.crow{padding:36px 0;border-top:1px solid rgba(28,26,26,.35)}
+.crow:first-of-type{margin-top:24px}
+.cgrid{display:grid;grid-template-columns:260px minmax(0,1fr);gap:40px;align-items:center}
+.crow .album{--r:80px}
+.ctitle{font-family:'Sorts Mill Goudy',serif;font-weight:400;font-size:clamp(30px,3.4vw,48px);line-height:1.05;letter-spacing:-.01em;margin:0}
+.crow .platesw.on{margin-top:28px}
+.crow .plates img{height:340px}
+.cvbtn{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.cvbtn:hover{opacity:.65}
+.ggrid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:56px;align-items:start}
+.gtitle{font-family:'Jost',sans-serif;font-weight:600;text-transform:uppercase;font-size:clamp(44px,6.5vw,104px);line-height:.92;letter-spacing:-.015em;margin:0}
+.rows{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid #1C1A1A}
+.rows > div{display:flex;flex-direction:column;gap:6px;padding:14px 20px 16px 0;border-bottom:1px solid rgba(28,26,26,.25);font-family:'Sorts Mill Goudy',serif;font-size:15px;line-height:1.55}
+.rows .k{font-family:'Jost',sans-serif;font-weight:500;font-size:11px;letter-spacing:.16em;text-transform:uppercase;opacity:.8}
+
+@media (max-width:760px){
+/* portada: las palabras se deslizan igual, los textos van debajo */
+.slot,.slot.sb{display:none}
+.hl{container-type:inline-size;justify-content:flex-start}
+.hword{font-size:clamp(46px,15vw,84px);transform:translateX(0);transition:transform .75s cubic-bezier(.65,0,.25,1);will-change:transform}
+.hl.r .hword{transform:translateX(calc(100cqw - 100%))}
+.mobile-statement{display:flex !important}
+#inicio{min-height:auto !important;padding-bottom:22px !important;gap:26px !important}
+#inicio > nav{grid-template-columns:repeat(2,minmax(0,1fr)) !important;row-gap:10px !important;font-size:12px !important}
+#inicio > nav > *{justify-self:start !important;grid-column:auto !important}
+#inicio .hnote[style*="grid"]{grid-template-columns:1fr auto !important;font-size:15px !important}
+#inicio .hnote[style*="grid"] > *{grid-column:auto !important}
+/* secciones */
+#galerias{display:flex !important;flex-direction:column;align-items:flex-start !important;gap:14px !important;padding:56px 20px 40px !important}
+.gtitle{font-size:clamp(34px,10vw,48px)}
+.ggrid{grid-template-columns:minmax(0,1fr);gap:28px}
+.rows{grid-template-columns:minmax(0,1fr)}
+/* solapas */
+.tabs{flex-wrap:nowrap;gap:4px;padding:0 12px}
+.tabs button{flex:1 1 0;min-width:0;justify-content:center;padding:14px 6px 12px;font-size:clamp(17px,5.4vw,24px);border-radius:10px 10px 0 0;transform:translateY(6px)}
+.tabs button .note{display:none}
+.tabs button.on{transform:none}
+.panel{padding:26px 16px 12px;border-radius:0}
+/* carruseles */
+.crow{padding:28px 0}
+.cgrid{grid-template-columns:minmax(0,1fr);gap:20px}
+.cgrid .albumw{max-width:240px}
+.ctitle{font-size:30px}
+.crow .plates img{height:300px}
+.plates img{height:320px}
+/* otros trabajos y contacto */
+#otros{padding:56px 20px !important}
+#otros a{grid-template-columns:minmax(0,1fr) !important;gap:2px !important;padding:14px 0 !important}
+#otros a > *{justify-self:start !important}
+#contacto > div:first-child{grid-template-columns:minmax(0,1fr) !important;gap:8px !important}
+#contacto > div:first-child > *{justify-self:start !important;word-break:break-all}
+}
+@media (prefers-reduced-motion:reduce){
+.slot,.slot span,.hword,.vellum{transition:none !important}
+}
+</style>
+
+
+<div class="paper" style="font-family: 'Sorts Mill Goudy', serif; color: #1C1A1A">
+<svg width="0" height="0" style="position: absolute" aria-hidden="true">
+<filter id="pgrain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"></feTurbulence><feColorMatrix type="saturate" values="0"></feColorMatrix></filter>
+<filter id="vgrain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" seed="7"></feTurbulence><feColorMatrix type="saturate" values="0"></feColorMatrix></filter>
+</svg>
+<svg class="grain" aria-hidden="true" style="opacity: 0.16"><rect width="100%" height="100%" filter="url(#pgrain)"></rect></svg>
+
+<section id="inicio" style="background: #FBC7CE; color: #1C1A1A; padding: 0 24px 28px; min-height: min(100vh, 860px); box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; gap: 32px">
+<nav class="caps" style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); column-gap: 0; row-gap: 10px; padding: 18px 0 14px; border-bottom: 1px solid #1C1A1A; font-size: 13px; letter-spacing: .12em">
+<span>Archivo</span>
+<a href="#galerias" style="grid-column: 3; text-decoration: none">Galerías</a>
+<a href="#otros" style="grid-column: 5; text-decoration: none">Otros trabajos</a>
+<a href="#contacto" style="grid-column: 6; text-decoration: none; justify-self: end">Contacto</a>
+</nav>
+<div style="display: flex; flex-direction: column; gap: 1.6vw">
+<h1 class="sr">Maira Gomez — archivo</h1>
+<div class="hl" data-line="0">
+<div class="slot sa"><span class="hnote">Redes, editorial
+y dirección de arte</span></div>
+<button class="hword" aria-label="Mover la palabra Maira">Maira</button>
+<div class="slot on sb"><span class="hnote">Redes, editorial
+y dirección de arte</span></div>
+</div>
+<div class="hl r" data-line="1">
+<div class="slot on sa"><span class="hnote">Licenciada en Artes Digitales
+Universidad Nacional de Quilmes</span></div>
+<button class="hword" aria-label="Mover la palabra Gomez">Gomez</button>
+<div class="slot sb"><span class="hnote">Licenciada en Artes Digitales
+Universidad Nacional de Quilmes</span></div>
+</div>
+<div class="hl" data-line="2">
+<div class="slot sa"><span class="hnote">Diseño desde la memoria: piezas que archivan,
+ordenan y reactivan lo que la cultura pop
+y la vida cotidiana van dejando atrás.</span></div>
+<button class="hword" aria-label="Mover la palabra Archivo">Archivo</button>
+<div class="slot on sb"><span class="hnote">Diseño desde la memoria: piezas que archivan,
+ordenan y reactivan lo que la cultura pop
+y la vida cotidiana van dejando atrás.</span></div>
+</div>
+<div class="mobile-statement" style="display: none; flex-direction: column; gap: 10px; margin-top: 6px"><p class="hnote" style="margin: 0; font-size: 17px">Redes, editorial y dirección de arte</p><p class="hnote" style="margin: 0; font-size: 17px">Licenciada en Artes Digitales<br>Universidad Nacional de Quilmes</p><p class="hnote" style="margin: 0; font-size: 17px">Diseño desde la memoria: piezas que archivan, ordenan y reactivan lo que la cultura pop y la vida cotidiana van dejando atrás.</p></div>
+</div>
+<div class="hnote" style="font-size: 17px; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); column-gap: 0; row-gap: 10px; padding-top: 14px; border-top: 1px solid #1C1A1A">
+<span style="grid-column: 1 / span 2">Buenos Aires, AR</span>
+<a href="#galerias" style="grid-column: 5 / span 2; text-decoration: none">Ver galerías ↓</a>
+</div>
+</section>
+
+<section id="galerias" class="paper" style="padding: 80px 24px 64px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; align-items: end">
+<h2 class="gtitle" style="grid-column: span 2">Galerías</h2>
+<p style="grid-column: span 2; margin: 0; max-width: 460px; font-size: 16px; line-height: 1.6">Formatos, series y sistemas pensados como pequeñas curadurías.</p>
+</section>
+
+<section class="rosa" style="padding: 64px 0 80px">
+<div class="ggrid" style="padding: 0 24px 56px">
+<div style="display: flex; flex-direction: column; gap: 24px">
+<p class="note" style="margin: 0">N.º 01 — La 100 FM — Carruseles de Instagram — 2026</p>
+<h3 class="gtitle">Cine, música<br>y series</h3>
+</div>
+<div class="rows" style="align-self: end">
+<div><span class="k">Encargo</span><span>Contenido de cine, música y series para el Instagram de La 100.</span></div>
+<div><span class="k">Idea</span><span>Tres frentes con identidad propia: formatos que se repiten y especiales que siguen la agenda.</span></div>
+<div><span class="k">Formato</span><span>11 carruseles · 98 placas</span></div>
+</div>
+</div>
+<div class="tabs" role="tablist" aria-label="Archivo de cine, música y series">
+<button class="on" data-tab="mus" style="background: #FBC7CE" role="tab" aria-selected="true">Músicos<span class="note">04</span></button>
+<button class="" data-tab="ser" style="background: #F4A9BB" role="tab" aria-selected="false">Series<span class="note">03</span></button>
+<button class="" data-tab="cin" style="background: #EE9DB5" role="tab" aria-selected="false">Cine<span class="note">04</span></button>
+</div>
+<div class="panel on" data-panel="mus" role="tabpanel" style="background: #FBC7CE">
+<p class="note" style="margin: 0 0 8px; font-size: 15px; max-width: 640px">Cumpleaños de músicos, contados a través de su paso por el cine: cada película, una entrada.</p>
+<article class="crow">
+<div class="cgrid">
+<div class="albumw">
+<span class="tape l"></span><span class="tape r"></span>
+<button class="album" data-id="c01" style="--x: -400px; --y: -400px" aria-pressed="false" aria-label="Abrir Sting en el cine">
+<div class="art bw"><img src="archivo/sting-01.jpg" alt="" style="inset: 0; width: 100%; height: 100%; object-fit: cover"></div>
+<div class="art color"><img src="archivo/sting-01.jpg" alt="" style="inset: 0; width: 100%; height: 100%; object-fit: cover"></div>
+<div class="vellum"><svg class="vtex" aria-hidden="true" style="opacity: 0.18"><rect width="100%" height="100%" filter="url(#vgrain)"></rect></svg><span class="note" style="color: #5E5653">15 placas</span><span class="note" style="color: #5E5653">tocá para abrir</span></div>
+</button>
+</div>
+<div style="display: flex; flex-direction: column; gap: 14px">
+<p class="note" style="margin: 0">N.º 01 — La 100 FM — 2026 — 15 placas</p>
+<h3 class="ctitle">Sting en el cine</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.55; max-width: 520px">Del punk de Quadrophenia a Dune, película por película.</p>
+</div>
+</div>
+<div class="platesw" data-strip="c01">
+<div class="plates">
+<img src="archivo/sting-01.jpg" alt="Sting en el cine, placa 1 de 15" loading="lazy">
+<img src="archivo/sting-02.jpg" alt="Sting en el cine, placa 2 de 15" loading="lazy">
+<img src="archivo/sting-03.jpg" alt="Sting en el cine, placa 3 de 15" loading="lazy">
+<img src="archivo/sting-04.jpg" alt="Sting en el cine, placa 4 de 15" loading="lazy">
+<img src="archivo/sting-05.jpg" alt="Sting en el cine, placa 5 de 15" loading="lazy">
+<img src="archivo/sting-06.jpg" alt="Sting en el cine, placa 6 de 15" loading="lazy">
+<img src="archivo/sting-07.jpg" alt="Sting en el cine, placa 7 de 15" loading="lazy">
+<img src="archivo/sting-08.jpg" alt="Sting en el cine, placa 8 de 15" loading="lazy">
+<img src="archivo/sting-09.jpg" alt="Sting en el cine, placa 9 de 15" loading="lazy">
+<img src="archivo/sting-10.jpg" alt="Sting en el cine, placa 10 de 15" loading="lazy">
+<img src="archivo/sting-11.jpg" alt="Sting en el cine, placa 11 de 15" loading="lazy">
+<img src="archivo/sting-12.jpg" alt="Sting en el cine, placa 12 de 15" loading="lazy">
+<img src="archivo/sting-13.jpg" alt="Sting en el cine, placa 13 de 15" loading="lazy">
+<img src="archivo/sting-14.jpg" alt="Sting en el cine, placa 14 de 15" loading="lazy">
+<img src="archivo/sting-15.jpg" alt="Sting en el cine, placa 15 de 15" loading="lazy">
+</div>
+<p class="note" style="margin: 0">deslizá →</p>
+</div>
+</article>
+<article class="crow">
+<div class="cgrid">
+<div class="albumw">
+<span class="tape l"></span><span class="tape r"></span>
+<button class="album" data-id="c02" style="--x: -400px; --y: -400px" aria-pressed="false" aria-label="Abrir Bob Dylan en el cine">
+<div class="art bw"><img src="archivo/dylan-01.jpg" alt="" style="inset: 0; width: 100%; height: 100%; object-fit: cover"></div>
+<div class="art color"><img src="archivo/dylan-01.jpg" alt="" style="inset: 0; width: 100%; height: 100%; object-fit: cover"></div>
+<div class="vellum"><svg class="vtex" aria-hidden="true" style="opacity: 0.18"><rect width="100%" height="100%" filter="url(#vgrain)"></rect></svg><span class="note" style="color: #5E5653">9 placas</span><span class="note" style="color: #5E5653">tocá para abrir</span></div>
+</button>
+</div>
+<div style="display: flex; flex-direction: column; gap: 14px">
+<p class="note" style="margin: 0">N.º 02 — La 100 FM — 2026 — 9 placas</p>
+<h3 class="ctitle">Bob Dylan en el cine</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.55; max-width: 520px">85 años de Dylan: cantante, poeta, Premio Nobel… y figura del cine.</p>
+</div>
+</div>
+<div class="platesw" data-strip="c02">
+<div class="plates">
+<img src="archivo/dylan-01.jpg" alt="Bob Dylan en el cine, placa 1 de 9" loading="lazy">
+<img src="archivo/dylan-02.jpg" alt="Bob Dylan en el cine, placa 2 de 9" loading="lazy">
+<img src="archivo/dylan-03.jpg" alt="Bob Dylan en el cine, placa 3 de 9" loading="lazy">
+<img src="archivo/dylan-04.jpg" alt="Bob Dylan en el cine, placa 4 de 9" loading="lazy">
+<img src="archivo/dylan-05.jpg" alt="Bob Dylan en el cine, placa 5 de 9" loading="lazy">
+<img src="archivo/dylan-06.jpg" alt="Bob Dylan en el cine, placa 6 de 9" loading="lazy">
+<img src="archivo/dylan-07.jpg" alt="Bob Dylan en el cine, placa 7 de 9" loading="lazy">
+<img src="archivo/dylan-08.jpg" alt="Bob Dylan en el cine, placa 8 de 9" loading="lazy">
+<img src="archivo/dylan-09.jpg" alt="Bob Dylan en el cine, placa 9 de 9" loading="lazy">
+</div>
+<p class="note" style="margin: 0">deslizá →</p>
+</div>
+</article>
+<article class="crow">
+<div class="cgrid">
+<div class="albumw">
+<span class="tape l"></span><span class="tape r"></span>
+<button class="album" data-id="c03" style="--x: -400px; --y: -400px" aria-pressed="false" aria-label="Abrir Madonna en el cine">
+<div class="art bw"><img src="archivo/madonna-01.jpg" alt="" style="inset: 0; width: 100%; height: 100%; object-fit: cover"></div>
+<div class="art color"><img src="archivo/madonna-01.jpg" alt="" style="inset: 0; width: 100%; height: 100%; object-fit: cover"></div>
+<div class="vellum"><svg class="vtex" aria-hidden="true" style="opacity: 0.18"><rect width="100%" height="100%" filter="url(#vgrain)"></rect></svg><span class="note" style="color: #5E5653">13 placas</span><span class="note" style="color: #5E5653">tocá para abrir</span></div>
+</button>
+</div>
+<div style="display: flex; flex-direction: column; gap: 14px">
+<p class="note" style="margin: 0">N.º 03 — La 100 FM — 2026 — 13 placas</p>
+<h3 class="ctitle">Madonna en el cine</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.55; max-width: 520px">Pocos artistas llegaron al cine con tanta convicción.</p>
+</div>
+</div>
+<div class="platesw" data-strip="c03">
+<div class="plates">
+<img src="archivo/madonna-01.jpg" alt="Madonna en el cine, placa 1 de 13" loading="lazy">
+<img src="archivo/madonna-02.jpg" alt="Madonna en el cine, placa 2 de 13" loading="lazy">
+<img src="archivo/madonna-03.jpg" alt="Madonna en el cine, placa 3 de 13" loading="lazy">
+<img src="archivo/madonna-04.jpg" alt="Madonna en el cine, placa 4 de 13" loading="lazy">
+<img src="archivo/madonna-05.jpg" alt="Madonna en el cine, placa 5 de 13" loading="lazy">
+<img src="archivo/madonna-06.jpg" alt="Madonna en el cine, placa 6 de 13" loading="lazy">
+<img src="archivo/madonna-07.jpg" alt="Madonna en el cine, placa 7 de 13" loading="lazy">
+<img src="archivo/madonna-08.jpg" alt="Madonna en el cine, placa 8 de 13" loading="lazy">
+<img src="archivo/madonna-09.jpg" alt="Madonna en el cine, placa 9 de 13" loading="lazy">
+<img src="archivo/madonna-10.jpg" alt="Madonna en el cine, placa 10 de 13" loading="lazy">
+<img src="archivo/madonna-11.jpg" alt="Madonna en el cine, placa 11 de 13" loading="lazy">
+<img src="archivo/madonna-12.jpg" alt="Madonna en el cine, placa 12 de 13" loading="lazy">
+<img src="archivo/madonna-13.jpg" alt="Madonna en el cine, placa 13 de 13" loading="lazy">
+</div>
+<p class="note" style="margin: 0">deslizá →</p>
+</div>
+</article>
+<article class="crow">
+<div class="cgrid">
+<div class="albumw">
+<span class="tape l"></span><span class="tape r"></span>
+<button class="album" data-id="c11" style="--x: -400px; --y: -400px" aria-pressed="false" aria-label="Abrir Mick Jagger en el cine">
+<div class="art bw"><img src="archivo/jagger-01.jpg" alt="" style="inset: 0; width: 100%; height: 100%; object-fit: cover"></div>
+<div class="art color"><img src="archivo/jagger-01.jpg" alt="" style="inset: 0; width: 100%; height: 100%; object-fit: cover"></div>
+<div class="vellum"><svg class="vtex" aria-hidden="true" style="opacity: 0.18"><rect width="100%" height="100%" filter="url(#vgrain)"></rect></svg><span class="note" style="color: #5E5653">9 placas</span><span class="note" style="color: #5E5653">tocá para abrir</span></div>
+</button>
+</div>
+<div style="display: flex; flex-direction: column; gap: 14px">
+<p class="note" style="margin: 0">N.º 04 — La 100 FM — 2026 — 9 placas</p>
+<h3 class="ctitle">Mick Jagger en el cine</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.55; max-width: 520px">El frontman más icónico del rock también probó suerte en el cine.</p>
+</div>
+</div>
+<div class="platesw" data-strip="c11">
+<div class="plates">
+<img src="archivo/jagger-01.jpg" alt="Mick Jagger en el cine, placa 1 de 9" loading="lazy">
+<img src="archivo/jagger-02.jpg" alt="Mick Jagger en el cine, placa 2 de 9" loading="lazy">
+<img src="archivo/jagger-03.jpg" alt="Mick Jagger en el cine, placa 3 de 9" loading="lazy">
+<img src="archivo/jagger-04.jpg" alt="Mick Jagger en el cine, placa 4 de 9" loading="lazy">
+<img src="archivo/jagger-05.jpg" alt="Mick Jagger en el cine, placa 5 de 9" loading="lazy">
+<img src="archivo/jagger-06.jpg" alt="Mick Jagger en el cine, placa 6 de 9" loading="lazy">
+<img src="archivo/jagger-07.jpg" alt="Mick Jagger en el cine, placa 7 de 9" loading="lazy">
+<img src="archivo/jagger-08.jpg" alt="Mick Jagger en el cine, placa 8 de 9" loading="lazy">
+<img src="archivo/jagger-09.jpg" alt="Mick Jagger en el cine, placa 9 de 9" loading="lazy">
+</div>
+<p class="note" style="margin: 0">deslizá →</p>
+</div>
+</article>
+</div>
+<div class="panel" data-panel="ser" role="tabpanel" style="background: #F4A9BB">
+<p class="note" style="margin: 0 0 8px; font-size: 15px; max-width: 640px">Tres series para el finde: un formato fijo de recomendaciones para maratonear.</p>
+<article class="crow">
+<div class="cgrid">
+<div class="albumw">
+<span class="tape l"></span><span class="tape r"></span>
+<button class="album" data-id="c04" style="--x: -400px; --y: -400px" aria-pressed="false" aria-label="Abrir Especial New York Times">
+<div class="art bw"><img src="archivo/series-01.jpg" alt="" style="inset: 0; width: 100%; height: 100%; object-fit: cover"></div>
+<div class="art color"><img src="archivo/series-01.jpg" alt="" style="inset: 0; width: 100%; height: 100%; object-fit: cover"></div>
+<div class="vellum"><svg class="vtex" aria-hidden="true" style="opacity: 0.18"><rect width="100%" height="100%" filter="url(#vgrain)"></rect></svg><span class="note" style="color: #5E5653">5 placas</span><span class="note" style="color: #5E5653">tocá para abrir</span></div>
+</button>
+</div>
+<div style="display: flex; flex-direction: column; gap: 14px">
+<p class="note" style="margin: 0">N.º 05 — La 100 FM — 2026 — 5 placas</p>
+<h3 class="ctitle">Especial New York Times</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.55; max-width: 520px">El ranking de las mejores series del siglo XXI, bajado a un top 3.</p>
+</div>
+</div>
+<div class="platesw" data-strip="c04">
+<div class="plates">
+<img src="archivo/series-01.jpg" alt="Especial New York Times, placa 1 de 5" loading="lazy">
+<img src="archivo/series-02.jpg" alt="Especial New York Times, placa 2 de 5" loading="lazy">
+<img src="archivo/series-03.jpg" alt="Especial New York Times, placa 3 de 5" loading="lazy">
+<img src="archivo/series-04.jpg" alt="Especial New York Times, placa 4 de 5" loading="lazy">
+<img src="archivo/series-05.jpg" alt="Especial New York Times, placa 5 de 5" loading="lazy">
+</div>
+<p class="note" style="margin: 0">deslizá →</p>
+</div>
+</article>
+<article class="crow">
+<div class="cgrid">
+<div class="albumw">
+<span class="tape l"></span><span class="tape r"></span>
+<button class="album" data-id="c05" style="--x: -400px; --y: -400px" aria-pressed="false" aria-label="Abrir Tres series para el finde">
+<div class="art bw"><img src="archivo/series1-01.jpg" alt="" style="inset: 0; width: 100%; height: 100%; object-fit: cover"></div>
+<div class="art color"><img src="archivo/series1-01.jpg" alt="" style="inset: 0; width: 100%; height: 100%; object-fit: cover"></div>
+<div class="vellum"><svg class="vtex" aria-hidden="true" style="opacity: 0.18"><rect width="100%" height="100%" filter="url(#vgrain)"></rect></svg><span class="note" style="color: #5E5653">5 placas</span><span class="note" style="color: #5E5653">tocá para abrir</span></div>
+</button>
+</div>
+<div style="display: flex; flex-direction: column; gap: 14px">
+<p class="note" style="margin: 0">N.º 06 — La 100 FM — 2026 — 5 placas</p>
+<h3 class="ctitle">Tres series para el finde</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.55; max-width: 520px">Big Little Lies, Casi feliz y All Her Fault.</p>
+</div>
+</div>
+<div class="platesw" data-strip="c05">
+<div class="plates">
+<img src="archivo/series1-01.jpg" alt="Tres series para el finde, placa 1 de 5" loading="lazy">
+<img src="archivo/series1-02.jpg" alt="Tres series para el finde, placa 2 de 5" loading="lazy">
+<img src="archivo/series1-03.jpg" alt="Tres series para el finde, placa 3 de 5" loading="lazy">
+<img src="archivo/series1-04.jpg" alt="Tres series para el finde, placa 4 de 5" loading="lazy">
+<img src="archivo/series1-05.jpg" alt="Tres series para el finde, placa 5 de 5" loading="lazy">
+</div>
+<p class="note" style="margin: 0">deslizá →</p>
+</div>
+</article>
+<article class="crow">
+<div class="cgrid">
+<div class="albumw">
+<span class="tape l"></span><span class="tape r"></span>
+<button class="album" data-id="c06" style="--x: -400px; --y: -400px" aria-pressed="false" aria-label="Abrir Tres miniseries para el finde">
+<div class="art bw"><img src="archivo/series2-01.jpg" alt="" style="inset: 0; width: 100%; height: 100%; object-fit: cover"></div>
+<div class="art color"><img src="archivo/series2-01.jpg" alt="" style="inset: 0; width: 100%; height: 100%; object-fit: cover"></div>
+<div class="vellum"><svg class="vtex" aria-hidden="true" style="opacity: 0.18"><rect width="100%" height="100%" filter="url(#vgrain)"></rect></svg><span class="note" style="color: #5E5653">5 placas</span><span class="note" style="color: #5E5653">tocá para abrir</span></div>
+</button>
+</div>
+<div style="display: flex; flex-direction: column; gap: 14px">
+<p class="note" style="margin: 0">N.º 07 — La 100 FM — 2026 — 5 placas</p>
+<h3 class="ctitle">Tres miniseries para el finde</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.55; max-width: 520px">Mare of Easttown, Maid y Pequeños fuegos.</p>
+</div>
+</div>
+<div class="platesw" data-strip="c06">
+<div class="plates">
+<img src="archivo/series2-01.jpg" alt="Tres miniseries para el finde, placa 1 de 5" loading="lazy">
+<img src="archivo/series2-02.jpg" alt="Tres miniseries para el finde, placa 2 de 5" loading="lazy">
+<img src="archivo/series2-03.jpg" alt="Tres miniseries para el finde, placa 3 de 5" loading="lazy">
+<img src="archivo/series2-04.jpg" alt="Tres miniseries para el finde, placa 4 de 5" loading="lazy">
+<img src="archivo/series2-05.jpg" alt="Tres miniseries para el finde, placa 5 de 5" loading="lazy">
+</div>
+<p class="note" style="margin: 0">deslizá →</p>
+</div>
+</article>
+</div>
+<div class="panel" data-panel="cin" role="tabpanel" style="background: #EE9DB5">
+<p class="note" style="margin: 0 0 8px; font-size: 15px; max-width: 640px">Especiales que siguen la agenda: estrenos, los Oscars, homenajes.</p>
+<article class="crow">
+<div class="cgrid">
+<div class="albumw">
+<span class="tape l"></span><span class="tape r"></span>
+<button class="album" data-id="c08" style="--x: -400px; --y: -400px" aria-pressed="false" aria-label="Abrir Oscars 2026: Marty Supreme">
+<div class="art bw"><img src="archivo/marty-01.jpg" alt="" style="inset: 0; width: 100%; height: 100%; object-fit: cover"></div>
+<div class="art color"><img src="archivo/marty-01.jpg" alt="" style="inset: 0; width: 100%; height: 100%; object-fit: cover"></div>
+<div class="vellum"><svg class="vtex" aria-hidden="true" style="opacity: 0.18"><rect width="100%" height="100%" filter="url(#vgrain)"></rect></svg><span class="note" style="color: #5E5653">10 placas</span><span class="note" style="color: #5E5653">tocá para abrir</span></div>
+</button>
+</div>
+<div style="display: flex; flex-direction: column; gap: 14px">
+<p class="note" style="margin: 0">N.º 08 — La 100 FM — 2026 — 10 placas</p>
+<h3 class="ctitle">Oscars 2026: Marty Supreme</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.55; max-width: 520px">Collage de archivo: textos a máquina, recortes y fotos de rodaje.</p>
+</div>
+</div>
+<div class="platesw" data-strip="c08">
+<div class="plates">
+<img src="archivo/marty-01.jpg" alt="Oscars 2026: Marty Supreme, placa 1 de 10" loading="lazy">
+<img src="archivo/marty-02.jpg" alt="Oscars 2026: Marty Supreme, placa 2 de 10" loading="lazy">
+<img src="archivo/marty-03.jpg" alt="Oscars 2026: Marty Supreme, placa 3 de 10" loading="lazy">
+<img src="archivo/marty-04.jpg" alt="Oscars 2026: Marty Supreme, placa 4 de 10" loading="lazy">
+<img src="archivo/marty-05.jpg" alt="Oscars 2026: Marty Supreme, placa 5 de 10" loading="lazy">
+<img src="archivo/marty-06.jpg" alt="Oscars 2026: Marty Supreme, placa 6 de 10" loading="lazy">
+<img src="archivo/marty-07.jpg" alt="Oscars 2026: Marty Supreme, placa 7 de 10" loading="lazy">
+<img src="archivo/marty-08.jpg" alt="Oscars 2026: Marty Supreme, placa 8 de 10" loading="lazy">
+<img src="archivo/marty-09.jpg" alt="Oscars 2026: Marty Supreme, placa 9 de 10" loading="lazy">
+<img src="archivo/marty-10.jpg" alt="Oscars 2026: Marty Supreme, placa 10 de 10" loading="lazy">
+</div>
+<p class="note" style="margin: 0">deslizá →</p>
+</div>
+</article>
+<article class="crow">
+<div class="cgrid">
+<div class="albumw">
+<span class="tape l"></span><span class="tape r"></span>
+<button class="album" data-id="c09" style="--x: -400px; --y: -400px" aria-pressed="false" aria-label="Abrir Las caras de 2026">
+<div class="art bw"><img src="archivo/hollywood-01.jpg" alt="" style="inset: 0; width: 100%; height: 100%; object-fit: cover"></div>
+<div class="art color"><img src="archivo/hollywood-01.jpg" alt="" style="inset: 0; width: 100%; height: 100%; object-fit: cover"></div>
+<div class="vellum"><svg class="vtex" aria-hidden="true" style="opacity: 0.18"><rect width="100%" height="100%" filter="url(#vgrain)"></rect></svg><span class="note" style="color: #5E5653">10 placas</span><span class="note" style="color: #5E5653">tocá para abrir</span></div>
+</button>
+</div>
+<div style="display: flex; flex-direction: column; gap: 14px">
+<p class="note" style="margin: 0">N.º 09 — La 100 FM — 2026 — 10 placas</p>
+<h3 class="ctitle">Las caras de 2026</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.55; max-width: 520px">Los actores que aparecen en varios estrenos grandes del año.</p>
+</div>
+</div>
+<div class="platesw" data-strip="c09">
+<div class="plates">
+<img src="archivo/hollywood-01.jpg" alt="Las caras de 2026, placa 1 de 10" loading="lazy">
+<img src="archivo/hollywood-02.jpg" alt="Las caras de 2026, placa 2 de 10" loading="lazy">
+<img src="archivo/hollywood-03.jpg" alt="Las caras de 2026, placa 3 de 10" loading="lazy">
+<img src="archivo/hollywood-04.jpg" alt="Las caras de 2026, placa 4 de 10" loading="lazy">
+<img src="archivo/hollywood-05.jpg" alt="Las caras de 2026, placa 5 de 10" loading="lazy">
+<img src="archivo/hollywood-06.jpg" alt="Las caras de 2026, placa 6 de 10" loading="lazy">
+<img src="archivo/hollywood-07.jpg" alt="Las caras de 2026, placa 7 de 10" loading="lazy">
+<img src="archivo/hollywood-08.jpg" alt="Las caras de 2026, placa 8 de 10" loading="lazy">
+<img src="archivo/hollywood-09.jpg" alt="Las caras de 2026, placa 9 de 10" loading="lazy">
+<img src="archivo/hollywood-10.jpg" alt="Las caras de 2026, placa 10 de 10" loading="lazy">
+</div>
+<p class="note" style="margin: 0">deslizá →</p>
+</div>
+</article>
+<article class="crow">
+<div class="cgrid">
+<div class="albumw">
+<span class="tape l"></span><span class="tape r"></span>
+<button class="album" data-id="c07" style="--x: -400px; --y: -400px" aria-pressed="false" aria-label="Abrir La Odisea, en IMAX">
+<div class="art bw"><img src="archivo/odisea-01.jpg" alt="" style="inset: 0; width: 100%; height: 100%; object-fit: cover"></div>
+<div class="art color"><img src="archivo/odisea-01.jpg" alt="" style="inset: 0; width: 100%; height: 100%; object-fit: cover"></div>
+<div class="vellum"><svg class="vtex" aria-hidden="true" style="opacity: 0.18"><rect width="100%" height="100%" filter="url(#vgrain)"></rect></svg><span class="note" style="color: #5E5653">9 placas</span><span class="note" style="color: #5E5653">tocá para abrir</span></div>
+</button>
+</div>
+<div style="display: flex; flex-direction: column; gap: 14px">
+<p class="note" style="margin: 0">N.º 10 — La 100 FM — 2026 — 9 placas</p>
+<h3 class="ctitle">La Odisea, en IMAX</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.55; max-width: 520px">Por qué es la primera película filmada enteramente con cámaras IMAX.</p>
+</div>
+</div>
+<div class="platesw" data-strip="c07">
+<div class="plates">
+<img src="archivo/odisea-01.jpg" alt="La Odisea, en IMAX, placa 1 de 9" loading="lazy">
+<img src="archivo/odisea-02.jpg" alt="La Odisea, en IMAX, placa 2 de 9" loading="lazy">
+<img src="archivo/odisea-03.jpg" alt="La Odisea, en IMAX, placa 3 de 9" loading="lazy">
+<img src="archivo/odisea-04.jpg" alt="La Odisea, en IMAX, placa 4 de 9" loading="lazy">
+<img src="archivo/odisea-05.jpg" alt="La Odisea, en IMAX, placa 5 de 9" loading="lazy">
+<img src="archivo/odisea-06.jpg" alt="La Odisea, en IMAX, placa 6 de 9" loading="lazy">
+<img src="archivo/odisea-07.jpg" alt="La Odisea, en IMAX, placa 7 de 9" loading="lazy">
+<img src="archivo/odisea-08.jpg" alt="La Odisea, en IMAX, placa 8 de 9" loading="lazy">
+<img src="archivo/odisea-09.jpg" alt="La Odisea, en IMAX, placa 9 de 9" loading="lazy">
+</div>
+<p class="note" style="margin: 0">deslizá →</p>
+</div>
+</article>
+<article class="crow">
+<div class="cgrid">
+<div class="albumw">
+<span class="tape l"></span><span class="tape r"></span>
+<button class="album" data-id="c10" style="--x: -400px; --y: -400px" aria-pressed="false" aria-label="Abrir Tim Curry, sus personajes">
+<div class="art bw"><img src="archivo/curry-01.jpg" alt="" style="inset: 0; width: 100%; height: 100%; object-fit: cover"></div>
+<div class="art color"><img src="archivo/curry-01.jpg" alt="" style="inset: 0; width: 100%; height: 100%; object-fit: cover"></div>
+<div class="vellum"><svg class="vtex" aria-hidden="true" style="opacity: 0.18"><rect width="100%" height="100%" filter="url(#vgrain)"></rect></svg><span class="note" style="color: #5E5653">8 placas</span><span class="note" style="color: #5E5653">tocá para abrir</span></div>
+</button>
+</div>
+<div style="display: flex; flex-direction: column; gap: 14px">
+<p class="note" style="margin: 0">N.º 11 — La 100 FM — 2026 — 8 placas</p>
+<h3 class="ctitle">Tim Curry, sus personajes</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.55; max-width: 520px">Homenaje a través de sus personajes más icónicos.</p>
+</div>
+</div>
+<div class="platesw" data-strip="c10">
+<div class="plates">
+<img src="archivo/curry-01.jpg" alt="Tim Curry, sus personajes, placa 1 de 8" loading="lazy">
+<img src="archivo/curry-02.jpg" alt="Tim Curry, sus personajes, placa 2 de 8" loading="lazy">
+<img src="archivo/curry-03.jpg" alt="Tim Curry, sus personajes, placa 3 de 8" loading="lazy">
+<img src="archivo/curry-04.jpg" alt="Tim Curry, sus personajes, placa 4 de 8" loading="lazy">
+<img src="archivo/curry-05.jpg" alt="Tim Curry, sus personajes, placa 5 de 8" loading="lazy">
+<img src="archivo/curry-06.jpg" alt="Tim Curry, sus personajes, placa 6 de 8" loading="lazy">
+<img src="archivo/curry-07.jpg" alt="Tim Curry, sus personajes, placa 7 de 8" loading="lazy">
+<img src="archivo/curry-08.jpg" alt="Tim Curry, sus personajes, placa 8 de 8" loading="lazy">
+</div>
+<p class="note" style="margin: 0">deslizá →</p>
+</div>
+</article>
+</div>
+</section>
+
+<section class="blush" style="padding: 64px 24px 72px; display: flex; flex-direction: column; gap: 40px">
+<div class="ggrid">
+<div style="display: flex; flex-direction: column; gap: 32px">
+<p class="note" style="margin: 0">N.º 02 — La 100 FM — Sistema de diseño — 2026</p>
+<h3 class="gtitle">Un sistema<br>para el feed</h3>
+<div class="rows">
+<div><span class="k">Encargo</span><span>Sistema de diseño para las placas del feed de Instagram.</span></div>
+<div><span class="k">Idea</span><span>Renovar la cara de la marca para lograr frescura, aun manteniendo su estilo e impronta habituales.</span></div>
+<div><span class="k">Diseño</span><span>Be Vietnam Pro, bordes redondeados y una gama de colores por sección.</span></div>
+<div><span class="k">Formato</span><span>30 placas · 1080×1350</span></div>
+</div>
+</div>
+<div class="albumw">
+<span class="tape l"></span><span class="tape r"></span>
+<button class="album" data-id="02" style="--x: -400px; --y: -400px" aria-pressed="false" aria-label="Abrir galería Sistema de feed">
+<div class="art bw"><img src="otros/feed-01.jpg" alt="" style="inset: 0; width: 100%; height: 100%; object-fit: cover"></div>
+<div class="art color"><img src="otros/feed-01.jpg" alt="" style="inset: 0; width: 100%; height: 100%; object-fit: cover"></div>
+<div class="vellum"><svg class="vtex" aria-hidden="true" style="opacity: 0.18"><rect width="100%" height="100%" filter="url(#vgrain)"></rect></svg><span class="note" style="color: #5E5653">galería 02</span><span class="note" style="color: #5E5653">tocá para ver las 30 placas</span></div>
+</button>
+</div>
+</div>
+<div class="platesw" data-strip="02">
+<div class="plates">
+<img src="otros/feed-01.jpg" alt="Sistema de feed, placa 1 de 30" loading="lazy">
+<img src="otros/feed-02.jpg" alt="Sistema de feed, placa 2 de 30" loading="lazy">
+<img src="otros/feed-03.jpg" alt="Sistema de feed, placa 3 de 30" loading="lazy">
+<img src="otros/feed-04.jpg" alt="Sistema de feed, placa 4 de 30" loading="lazy">
+<img src="otros/feed-05.jpg" alt="Sistema de feed, placa 5 de 30" loading="lazy">
+<img src="otros/feed-06.jpg" alt="Sistema de feed, placa 6 de 30" loading="lazy">
+<img src="otros/feed-07.jpg" alt="Sistema de feed, placa 7 de 30" loading="lazy">
+<img src="otros/feed-08.jpg" alt="Sistema de feed, placa 8 de 30" loading="lazy">
+<img src="otros/feed-09.jpg" alt="Sistema de feed, placa 9 de 30" loading="lazy">
+<img src="otros/feed-10.jpg" alt="Sistema de feed, placa 10 de 30" loading="lazy">
+<img src="otros/feed-11.jpg" alt="Sistema de feed, placa 11 de 30" loading="lazy">
+<img src="otros/feed-12.jpg" alt="Sistema de feed, placa 12 de 30" loading="lazy">
+<img src="otros/feed-13.jpg" alt="Sistema de feed, placa 13 de 30" loading="lazy">
+<img src="otros/feed-14.jpg" alt="Sistema de feed, placa 14 de 30" loading="lazy">
+<img src="otros/feed-15.jpg" alt="Sistema de feed, placa 15 de 30" loading="lazy">
+<img src="otros/feed-16.jpg" alt="Sistema de feed, placa 16 de 30" loading="lazy">
+<img src="otros/feed-17.jpg" alt="Sistema de feed, placa 17 de 30" loading="lazy">
+<img src="otros/feed-18.jpg" alt="Sistema de feed, placa 18 de 30" loading="lazy">
+<img src="otros/feed-19.jpg" alt="Sistema de feed, placa 19 de 30" loading="lazy">
+<img src="otros/feed-20.jpg" alt="Sistema de feed, placa 20 de 30" loading="lazy">
+<img src="otros/feed-21.jpg" alt="Sistema de feed, placa 21 de 30" loading="lazy">
+<img src="otros/feed-22.jpg" alt="Sistema de feed, placa 22 de 30" loading="lazy">
+<img src="otros/feed-23.jpg" alt="Sistema de feed, placa 23 de 30" loading="lazy">
+<img src="otros/feed-24.jpg" alt="Sistema de feed, placa 24 de 30" loading="lazy">
+<img src="otros/feed-25.jpg" alt="Sistema de feed, placa 25 de 30" loading="lazy">
+<img src="otros/feed-26.jpg" alt="Sistema de feed, placa 26 de 30" loading="lazy">
+<img src="otros/feed-27.jpg" alt="Sistema de feed, placa 27 de 30" loading="lazy">
+<img src="otros/feed-28.jpg" alt="Sistema de feed, placa 28 de 30" loading="lazy">
+<img src="otros/feed-29.jpg" alt="Sistema de feed, placa 29 de 30" loading="lazy">
+<img src="otros/feed-30.jpg" alt="Sistema de feed, placa 30 de 30" loading="lazy">
+</div>
+<p class="note" style="margin: 0">deslizá →</p>
+</div>
+</section>
+<section class="paper" style="padding: 64px 24px 72px; display: flex; flex-direction: column; gap: 40px">
+<div class="ggrid">
+<div style="display: flex; flex-direction: column; gap: 32px">
+<p class="note" style="margin: 0">N.º 03 — Escuela Universitaria de Artes, UNQ — Portada de podcast — 2024</p>
+<h3 class="gtitle">EU<span style="text-transform: none">d</span>A<br>al habla</h3>
+<div class="rows">
+<div><span class="k">Encargo</span><span>Portada para el podcast de la Escuela Universitaria de Artes de la Universidad Nacional de Quilmes.</span></div>
+<div><span class="k">Idea</span><span>Un podcast de tres episodios para inspirar y orientar a quienes se interesan en las artes y las tecnologías, con una mirada sobre cada carrera.</span></div>
+<div><span class="k">Formato</span><span>Portada 1500×1500 · mockup de aplicación</span></div>
+</div>
+</div>
+<div class="albumw">
+<span class="tape l"></span><span class="tape r"></span>
+<button class="album" data-id="03" style="--x: -400px; --y: -400px" aria-pressed="false" aria-label="Abrir galería EUdA al habla">
+<div class="art bw"><img src="otros/euda-01.jpg" alt="" style="inset: 0; width: 100%; height: 100%; object-fit: cover"></div>
+<div class="art color"><img src="otros/euda-01.jpg" alt="" style="inset: 0; width: 100%; height: 100%; object-fit: cover"></div>
+<div class="vellum"><svg class="vtex" aria-hidden="true" style="opacity: 0.18"><rect width="100%" height="100%" filter="url(#vgrain)"></rect></svg><span class="note" style="color: #5E5653">galería 03</span><span class="note" style="color: #5E5653">tocá para ver las 2 piezas</span></div>
+</button>
+</div>
+</div>
+<div class="platesw" data-strip="03">
+<div class="plates">
+<img src="otros/euda-01.jpg" alt="EUdA al habla, portada del podcast" loading="lazy" style="aspect-ratio: 1 / 1">
+<img src="otros/euda-02.jpg" alt="EUdA al habla, mockup de la portada en un celular" loading="lazy" style="aspect-ratio: 1 / 1">
+</div>
+</div>
+</section>
+
+
+<section id="otros" class="paper" style="padding: 80px 24px; display: flex; flex-direction: column; gap: 28px">
+<h2 class="gtitle">Otros trabajos</h2>
+<div style="display: flex; flex-direction: column; border-top: 1px solid #1C1A1A; font-size: 15px">
+<a href="https://www.youtube.com/watch?v=joeeCwoXBmY" target="_blank" rel="noopener" style="display: grid; grid-template-columns: minmax(0, 1.2fr) repeat(3, minmax(0, 1fr)); gap: 16px; align-items: baseline; padding: 18px 0; border-bottom: 1px solid rgba(28,26,26,.25); text-decoration: none">
+<span class="caps" style="font-size: 26px; font-weight: 600">Cobardía</span><span>Videoclip</span><span>Dirección de arte</span><span class="note" style="justify-self: end">2024 ↗</span>
+</a>
+<a href="https://maivalentina3.github.io/locutorio/" target="_blank" rel="noopener" style="display: grid; grid-template-columns: minmax(0, 1.2fr) repeat(3, minmax(0, 1fr)); gap: 16px; align-items: baseline; padding: 18px 0; border-bottom: 1px solid rgba(28,26,26,.25); text-decoration: none">
+<span class="caps" style="font-size: 26px; font-weight: 600">Locutorio</span><span>Net art</span><span>Memorial web de locutorios y cibers</span><span class="note" style="justify-self: end">2026 ↗</span>
+</a>
+<a href="https://maivalentina3.github.io/feliz-cuando-llueve/" target="_blank" rel="noopener" style="display: grid; grid-template-columns: minmax(0, 1.2fr) repeat(3, minmax(0, 1fr)); gap: 16px; align-items: baseline; padding: 18px 0; border-bottom: 1px solid rgba(28,26,26,.25); text-decoration: none">
+<span class="caps" style="font-size: 26px; font-weight: 600">Feliz cuando llueve</span><span>Net art</span><span>Intervención web del newsletter de Bruno Storino</span><span class="note" style="justify-self: end">2025 ↗</span>
+</a>
+</div>
+</section>
+
+<footer id="contacto" class="blush" style="padding: 0 24px; overflow: hidden">
+<div class="note" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; padding: 18px 0">
+<a href="mailto:maivalentinagomez.lab@gmail.com">maivalentinagomez.lab@gmail.com</a>
+<span></span>
+<a href="CV_Maira_Gomez.pdf" target="_blank" rel="noopener" style="justify-self: end">CV (PDF)</a>
+</div>
+<div class="caps" style="font-size: clamp(72px, 15.5vw, 250px); font-weight: 600; line-height: .86; letter-spacing: -.02em; white-space: nowrap; height: .66em; overflow: hidden">Escribime</div>
+</footer>
+
+</div>
+
+<script>
+(function () {
+  // Portada: cada palabra se corre de costado y su texto cambia de lado
+  document.querySelectorAll('.hl[data-line]').forEach(function (row) {
+    var word = row.querySelector('.hword');
+    var a = row.querySelector('.slot.sa'), b = row.querySelector('.slot.sb');
+    word.addEventListener('click', function () {
+      var right = row.classList.toggle('r');
+      a.classList.toggle('on', right);
+      b.classList.toggle('on', !right);
+    });
+  });
+  // Solapas
+  var tabs = document.querySelectorAll('[data-tab]');
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function () {
+      var k = t.getAttribute('data-tab');
+      tabs.forEach(function (o) { var on = o === t; o.classList.toggle('on', on); o.setAttribute('aria-selected', on ? 'true' : 'false'); });
+      document.querySelectorAll('[data-panel]').forEach(function (p) { p.classList.toggle('on', p.getAttribute('data-panel') === k); });
+    });
+  });
+  // Álbumes: revelar con el cursor y abrir
+  document.querySelectorAll('.album[data-id]').forEach(function (al) {
+    var id = al.getAttribute('data-id');
+    var strip = document.querySelector('[data-strip="' + id + '"]');
+    al.addEventListener('click', function () {
+      var open = al.classList.toggle('is-open');
+      al.setAttribute('aria-pressed', open ? 'true' : 'false');
+      if (strip) strip.classList.toggle('on', open);
+    });
+    al.addEventListener('pointermove', function (e) {
+      var r = al.getBoundingClientRect();
+      al.style.setProperty('--x', (e.clientX - r.left) + 'px');
+      al.style.setProperty('--y', (e.clientY - r.top) + 'px');
+    });
+    al.addEventListener('pointerleave', function () {
+      al.style.setProperty('--x', '-400px');
+      al.style.setProperty('--y', '-400px');
+    });
+  });
+})();
+
+</script>
+</body>
+</html>
