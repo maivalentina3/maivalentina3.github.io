@@ -29,7 +29,7 @@ a{color:inherit}a:hover{opacity:.65}
 
 /* título: las palabras se mueven cuando las tocás */
 .hl{display:flex;align-items:flex-end;container-type:inline-size}
-.slot{flex:0 0 0%;flex-grow:0;min-width:0;overflow:hidden;transition:flex-grow 1s cubic-bezier(.7,0,.2,1)}
+.slot{flex:0 0 0%;flex-grow:0;min-width:0;overflow:hidden;max-height:calc(clamp(52px,11.5vw,190px) * .86);transition:flex-grow 1s cubic-bezier(.7,0,.2,1)}
 .slot.on{flex-grow:1}
 .slot.sb{display:flex;justify-content:flex-end}
 .sb span{flex:0 1 calc(100cqw / 3);width:auto;min-width:0;margin-left:24px;transition:opacity .3s ease,flex-basis .8s cubic-bezier(.6,0,.2,1)}
@@ -138,6 +138,9 @@ transition:transform .9s cubic-bezier(.2,.8,.2,1),opacity .9s ease,box-shadow .9
 @media (prefers-reduced-motion:reduce){
 .slot,.slot span,.hword,.vellum{transition:none !important}
 }
+.mailx button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.mailx a{text-decoration:underline;text-underline-offset:3px}
+@media (max-width:760px){.mailx{order:3;grid-column:1/-1}}
 </style>
 
 
@@ -664,8 +667,8 @@ y la vida cotidiana van dejando atrás.</span></div>
 
 <footer id="contacto" class="blush" style="padding: 0 24px; overflow: hidden">
 <div class="note" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; padding: 18px 0">
-<a href="mailto:maivalentinagomez.lab@gmail.com">maivalentinagomez.lab@gmail.com</a>
-<span></span>
+<a href="mailto:maivalentinagomez.lab@gmail.com" data-mail>maivalentinagomez.lab@gmail.com</a>
+<span class="mailx"><button type="button" data-copy>copiar mail</button> · <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=maivalentinagomez.lab@gmail.com" target="_blank" rel="noopener">abrir en Gmail ↗</a></span>
 <a href="CV_Maira_Gomez.pdf" target="_blank" rel="noopener" style="justify-self: end">CV (PDF)</a>
 </div>
 <div class="caps" style="font-size: clamp(72px, 15.5vw, 250px); font-weight: 600; line-height: .86; letter-spacing: -.02em; white-space: nowrap; height: .66em; overflow: hidden">Escribime</div>
@@ -675,6 +678,16 @@ y la vida cotidiana van dejando atrás.</span></div>
 
 <script>
 (function () {
+  // Mail: además de abrir el programa de correo, lo copia (por si la compu no tiene uno configurado)
+  var MAIL = 'maivalentinagomez.lab@gmail.com';
+  var cbtn = document.querySelector('[data-copy]');
+  function copyMail() {
+    var done = function () { if (!cbtn) return; cbtn.textContent = '¡copiado!'; clearTimeout(cbtn._t); cbtn._t = setTimeout(function () { cbtn.textContent = 'copiar mail'; }, 2200); };
+    if (navigator.clipboard && window.isSecureContext) { navigator.clipboard.writeText(MAIL).then(done, fallback); } else { fallback(); }
+    function fallback() { var t = document.createElement('textarea'); t.value = MAIL; t.style.position = 'fixed'; t.style.opacity = '0'; document.body.appendChild(t); t.select(); try { document.execCommand('copy'); done(); } catch (e) {} document.body.removeChild(t); }
+  }
+  if (cbtn) cbtn.addEventListener('click', copyMail);
+  document.querySelectorAll('[data-mail]').forEach(function (a) { a.addEventListener('click', copyMail); });
   // Portada: cada palabra se corre de costado y su texto cambia de lado
   document.querySelectorAll('.hl[data-line]').forEach(function (row) {
     var word = row.querySelector('.hword');
