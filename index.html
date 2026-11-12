@@ -14,7 +14,7 @@
 
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&amp;family=Sorts+Mill+Goudy:ital@0;1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&amp;family=Pinyon+Script&amp;family=Sorts+Mill+Goudy:ital@0;1&amp;display=swap" rel="stylesheet">
 <style>
 body{margin:0;background:#F3EEE6}
 a{color:inherit}a:hover{opacity:.65}
@@ -35,6 +35,7 @@ a{color:inherit}a:hover{opacity:.65}
 .sb span{flex:0 1 calc(100cqw / 3);width:auto;min-width:0;margin-left:24px;transition:opacity .3s ease,flex-basis .8s cubic-bezier(.6,0,.2,1)}
 .slot.on.sb span{transition:opacity .6s ease .65s,flex-basis .8s cubic-bezier(.6,0,.2,1)}
 .sa span{padding-right:24px}
+.slot span.pres{padding-left:.35em;font-family:'Pinyon Script','Snell Roundhand',cursive;font-size:clamp(30px,3.6vw,60px);line-height:1;color:var(--rosa)}
 .slot span{display:block;width:calc(100cqw / 3);padding:0 0 calc(clamp(52px,11.5vw,190px) * .08 - 5px);box-sizing:border-box;white-space:pre-line;opacity:0;transition:opacity .3s ease}
 .hnote{font-family:'Sorts Mill Goudy',serif;font-size:19px;line-height:1.35}
 .slot.on span{opacity:1;transition:opacity .6s ease .65s}
@@ -105,6 +106,7 @@ transition:transform .9s cubic-bezier(.2,.8,.2,1),opacity .9s ease,box-shadow .9
 .hword{font-size:clamp(46px,15vw,84px);transform:translateX(0);transition:transform .75s cubic-bezier(.65,0,.25,1);will-change:transform}
 .hl.r .hword{transform:translateX(calc(100cqw - 100%))}
 .mobile-statement{display:flex !important}
+.credito{display:block !important}
 #inicio{min-height:auto !important;padding-bottom:22px !important;gap:26px !important}
 #inicio > nav{grid-template-columns:repeat(2,minmax(0,1fr)) !important;row-gap:10px !important;font-size:12px !important}
 #inicio > nav > *{justify-self:start !important;grid-column:auto !important}
@@ -214,6 +216,14 @@ transition:transform .9s cubic-bezier(.2,.8,.2,1),opacity .9s ease,box-shadow .9
 .sublabel{flex-direction:column;gap:4px}
 }
 @media (prefers-reduced-motion:reduce){.phone video{display:none}.phone{background:#16CBEA url(otros/alt100-key-shuffle.jpg) center/cover}}
+
+/* acentos: rosa fuerte y cursiva de película */
+:root{--rosa:#EC1380}
+.tape{background:rgba(236,19,128,.78)}
+.nro,.grouphead .note,#contacto .note,#contacto .note a,#contacto .note button{color:var(--rosa)}
+.credito{display:none;margin:0 0 calc(-1.6vw - .12em);padding-left:.15em;font-family:'Pinyon Script','Snell Roundhand',cursive;font-size:clamp(30px,3.6vw,60px);line-height:1;color:var(--rosa);animation:credito 2.6s ease-out .9s both}
+@keyframes credito{from{opacity:0;filter:blur(4px)}to{opacity:1;filter:blur(0)}}
+@media (prefers-reduced-motion:reduce){.credito{animation:none}}
 </style>
 
 
@@ -234,19 +244,18 @@ transition:transform .9s cubic-bezier(.2,.8,.2,1),opacity .9s ease,box-shadow .9
 <div style="display: flex; flex-direction: column; gap: 1.6vw">
 <h1 class="sr">Maira Gomez — archivo</h1>
 <div class="hl" data-line="0">
-<div class="slot sa"><span class="hnote">Redes, editorial
-y dirección de arte</span></div>
+<div class="slot sa"><span class="hnote">Licenciada en Artes Digitales
+Universidad Nacional de Quilmes</span></div>
 <button class="hword" aria-label="Mover la palabra Maira">Maira</button>
-<div class="slot on sb"><span class="hnote">Redes, editorial
-y dirección de arte</span></div>
+<div class="slot on sb"><span class="hnote">Licenciada en Artes Digitales
+Universidad Nacional de Quilmes</span></div>
 </div>
 <div class="hl r" data-line="1">
-<div class="slot on sa"><span class="hnote">Licenciada en Artes Digitales
-Universidad Nacional de Quilmes</span></div>
+<div class="slot on sa"><span class="hnote pres">presenta su</span></div>
 <button class="hword" aria-label="Mover la palabra Gomez">Gomez</button>
-<div class="slot sb"><span class="hnote">Licenciada en Artes Digitales
-Universidad Nacional de Quilmes</span></div>
+<div class="slot sb"><span class="hnote pres">presenta su</span></div>
 </div>
+<p class="credito" aria-hidden="true">presenta su</p>
 <div class="hl" data-line="2">
 <div class="slot sa"><span class="hnote">Diseño desde la memoria: piezas que archivan,
 ordenan y reactivan lo que la cultura pop
@@ -256,7 +265,7 @@ y la vida cotidiana van dejando atrás.</span></div>
 ordenan y reactivan lo que la cultura pop
 y la vida cotidiana van dejando atrás.</span></div>
 </div>
-<div class="mobile-statement" style="display: none; flex-direction: column; gap: 10px; margin-top: 6px"><p class="hnote" style="margin: 0; font-size: 17px">Redes, editorial y dirección de arte</p><p class="hnote" style="margin: 0; font-size: 17px">Licenciada en Artes Digitales<br>Universidad Nacional de Quilmes</p><p class="hnote" style="margin: 0; font-size: 17px">Diseño desde la memoria: piezas que archivan, ordenan y reactivan lo que la cultura pop y la vida cotidiana van dejando atrás.</p></div>
+<div class="mobile-statement" style="display: none; flex-direction: column; gap: 10px; margin-top: 6px"><p class="hnote" style="margin: 0; font-size: 17px">Licenciada en Artes Digitales<br>Universidad Nacional de Quilmes</p><p class="hnote" style="margin: 0; font-size: 17px">Diseño desde la memoria: piezas que archivan, ordenan y reactivan lo que la cultura pop y la vida cotidiana van dejando atrás.</p></div>
 </div>
 <div class="hnote" style="font-size: 17px; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); column-gap: 0; row-gap: 10px; padding-top: 14px; border-top: 1px solid #1C1A1A">
 <span style="grid-column: 1 / span 2">Buenos Aires, AR</span>
@@ -268,7 +277,7 @@ y la vida cotidiana van dejando atrás.</span></div>
 <section class="case blush" id="alt100">
 <div class="case-head">
 <div>
-<p class="note" style="margin: 0">N.º 01 — La 100 FM — Propuesta de identidad — 2026</p>
+<p class="note nro" style="margin: 0">N.º 01 — La 100 FM — Propuesta de identidad — 2026</p>
 <h3 class="case-title">Alt 100</h3>
 </div>
 <p class="case-lead">Una identidad propia para el contenido de música alternativa de La 100. Alt es la tecla de las opciones alternativas: el logo es un atajo y todo el sistema tiene forma de tecla.</p>
@@ -332,7 +341,7 @@ y la vida cotidiana van dejando atrás.</span></div>
 <section class="case paper" id="la100">
 <div class="case-head">
 <div>
-<p class="note" style="margin: 0">N.º 02 — La 100 FM — Identidad para redes — 2026</p>
+<p class="note nro" style="margin: 0">N.º 02 — La 100 FM — Identidad para redes — 2026</p>
 <h3 class="case-title">La 100</h3>
 </div>
 <p class="case-lead">Un sistema visual para las redes de La 100: placas, historias y portadas de reel. Un manual completo con color, tipografía, componentes y doce formatos para el feed.</p>
@@ -380,7 +389,7 @@ y la vida cotidiana van dejando atrás.</span></div>
 <section class="rosa" style="padding: 64px 0 80px">
 <div class="ggrid" style="padding: 0 24px 56px">
 <div style="display: flex; flex-direction: column; gap: 24px">
-<p class="note" style="margin: 0">N.º 03 — La 100 FM — Carruseles de Instagram — 2026</p>
+<p class="note nro" style="margin: 0">N.º 03 — La 100 FM — Carruseles de Instagram — 2026</p>
 <h3 class="gtitle">Música, cine<br>y series</h3>
 </div>
 <div class="rows" style="align-self: end">
@@ -407,7 +416,7 @@ y la vida cotidiana van dejando atrás.</span></div>
 </button>
 </div>
 <div style="display: flex; flex-direction: column; gap: 14px">
-<p class="note" style="margin: 0">N.º 01 — La 100 FM — 2026 — 15 placas</p>
+<p class="note nro" style="margin: 0">N.º 01 — La 100 FM — 2026 — 15 placas</p>
 <h3 class="ctitle">Sting en el cine</h3>
 <p style="margin: 0; font-size: 16px; line-height: 1.55; max-width: 520px">Del punk de Quadrophenia a Dune, película por película.</p>
 </div>
@@ -444,7 +453,7 @@ y la vida cotidiana van dejando atrás.</span></div>
 </button>
 </div>
 <div style="display: flex; flex-direction: column; gap: 14px">
-<p class="note" style="margin: 0">N.º 02 — La 100 FM — 2026 — 9 placas</p>
+<p class="note nro" style="margin: 0">N.º 02 — La 100 FM — 2026 — 9 placas</p>
 <h3 class="ctitle">Bob Dylan en el cine</h3>
 <p style="margin: 0; font-size: 16px; line-height: 1.55; max-width: 520px">85 años de Dylan: cantante, poeta, Premio Nobel… y figura del cine.</p>
 </div>
@@ -475,7 +484,7 @@ y la vida cotidiana van dejando atrás.</span></div>
 </button>
 </div>
 <div style="display: flex; flex-direction: column; gap: 14px">
-<p class="note" style="margin: 0">N.º 03 — La 100 FM — 2026 — 13 placas</p>
+<p class="note nro" style="margin: 0">N.º 03 — La 100 FM — 2026 — 13 placas</p>
 <h3 class="ctitle">Madonna en el cine</h3>
 <p style="margin: 0; font-size: 16px; line-height: 1.55; max-width: 520px">Pocos artistas llegaron al cine con tanta convicción.</p>
 </div>
@@ -510,7 +519,7 @@ y la vida cotidiana van dejando atrás.</span></div>
 </button>
 </div>
 <div style="display: flex; flex-direction: column; gap: 14px">
-<p class="note" style="margin: 0">N.º 04 — La 100 FM — 2026 — 9 placas</p>
+<p class="note nro" style="margin: 0">N.º 04 — La 100 FM — 2026 — 9 placas</p>
 <h3 class="ctitle">Mick Jagger en el cine</h3>
 <p style="margin: 0; font-size: 16px; line-height: 1.55; max-width: 520px">El frontman más icónico del rock también probó suerte en el cine.</p>
 </div>
@@ -541,7 +550,7 @@ y la vida cotidiana van dejando atrás.</span></div>
 </button>
 </div>
 <div style="display: flex; flex-direction: column; gap: 14px">
-<p class="note" style="margin: 0">N.º 05 — La 100 FM — 2026 — 9 placas</p>
+<p class="note nro" style="margin: 0">N.º 05 — La 100 FM — 2026 — 9 placas</p>
 <h3 class="ctitle">80 años de David Bowie</h3>
 <p style="margin: 0; font-size: 16px; line-height: 1.55; max-width: 520px">A diez años de su muerte, las exposiciones, los shows y las experiencias con las que el mundo lo celebra.</p>
 </div>
@@ -572,7 +581,7 @@ y la vida cotidiana van dejando atrás.</span></div>
 </button>
 </div>
 <div style="display: flex; flex-direction: column; gap: 14px">
-<p class="note" style="margin: 0">N.º 06 — La 100 FM — 2026 — 9 placas</p>
+<p class="note nro" style="margin: 0">N.º 06 — La 100 FM — 2026 — 9 placas</p>
 <h3 class="ctitle">Charly cumple 75</h3>
 <p style="margin: 0; font-size: 16px; line-height: 1.55; max-width: 520px">Tres formas de volver a él: Adiós Sui Géneris, Existir sin vos y la serie BIOS.</p>
 </div>
@@ -603,7 +612,7 @@ y la vida cotidiana van dejando atrás.</span></div>
 </button>
 </div>
 <div style="display: flex; flex-direction: column; gap: 14px">
-<p class="note" style="margin: 0">N.º 07 — La 100 FM — 2026 — 7 placas</p>
+<p class="note nro" style="margin: 0">N.º 07 — La 100 FM — 2026 — 7 placas</p>
 <h3 class="ctitle">Cher, The Memoir</h3>
 <p style="margin: 0; font-size: 16px; line-height: 1.55; max-width: 520px">La segunda parte de su autobiografía ya tiene fecha: el 20 de abril de 2027.</p>
 </div>
@@ -635,7 +644,7 @@ y la vida cotidiana van dejando atrás.</span></div>
 </button>
 </div>
 <div style="display: flex; flex-direction: column; gap: 14px">
-<p class="note" style="margin: 0">N.º 08 — La 100 FM — 2026 — 10 placas</p>
+<p class="note nro" style="margin: 0">N.º 08 — La 100 FM — 2026 — 10 placas</p>
 <h3 class="ctitle">Oscars 2026: Marty Supreme</h3>
 <p style="margin: 0; font-size: 16px; line-height: 1.55; max-width: 520px">Collage de archivo: textos a máquina, recortes y fotos de rodaje.</p>
 </div>
@@ -667,7 +676,7 @@ y la vida cotidiana van dejando atrás.</span></div>
 </button>
 </div>
 <div style="display: flex; flex-direction: column; gap: 14px">
-<p class="note" style="margin: 0">N.º 09 — La 100 FM — 2026 — 10 placas</p>
+<p class="note nro" style="margin: 0">N.º 09 — La 100 FM — 2026 — 10 placas</p>
 <h3 class="ctitle">Las caras de 2026</h3>
 <p style="margin: 0; font-size: 16px; line-height: 1.55; max-width: 520px">Los actores que aparecen en varios estrenos grandes del año.</p>
 </div>
@@ -699,7 +708,7 @@ y la vida cotidiana van dejando atrás.</span></div>
 </button>
 </div>
 <div style="display: flex; flex-direction: column; gap: 14px">
-<p class="note" style="margin: 0">N.º 10 — La 100 FM — 2026 — 9 placas</p>
+<p class="note nro" style="margin: 0">N.º 10 — La 100 FM — 2026 — 9 placas</p>
 <h3 class="ctitle">La Odisea, en IMAX</h3>
 <p style="margin: 0; font-size: 16px; line-height: 1.55; max-width: 520px">Por qué es la primera película filmada enteramente con cámaras IMAX.</p>
 </div>
@@ -730,7 +739,7 @@ y la vida cotidiana van dejando atrás.</span></div>
 </button>
 </div>
 <div style="display: flex; flex-direction: column; gap: 14px">
-<p class="note" style="margin: 0">N.º 11 — La 100 FM — 2026 — 8 placas</p>
+<p class="note nro" style="margin: 0">N.º 11 — La 100 FM — 2026 — 8 placas</p>
 <h3 class="ctitle">Tim Curry, sus personajes</h3>
 <p style="margin: 0; font-size: 16px; line-height: 1.55; max-width: 520px">Homenaje a través de sus personajes más icónicos.</p>
 </div>
@@ -763,7 +772,7 @@ y la vida cotidiana van dejando atrás.</span></div>
 </button>
 </div>
 <div style="display: flex; flex-direction: column; gap: 14px">
-<p class="note" style="margin: 0">N.º 12 — La 100 FM — 2026 — 5 placas</p>
+<p class="note nro" style="margin: 0">N.º 12 — La 100 FM — 2026 — 5 placas</p>
 <h3 class="ctitle">Especial New York Times</h3>
 <p style="margin: 0; font-size: 16px; line-height: 1.55; max-width: 520px">El ranking de las mejores series del siglo XXI, bajado a un top 3.</p>
 </div>
@@ -790,7 +799,7 @@ y la vida cotidiana van dejando atrás.</span></div>
 </button>
 </div>
 <div style="display: flex; flex-direction: column; gap: 14px">
-<p class="note" style="margin: 0">N.º 13 — La 100 FM — 2026 — 5 placas</p>
+<p class="note nro" style="margin: 0">N.º 13 — La 100 FM — 2026 — 5 placas</p>
 <h3 class="ctitle">Tres series para el finde</h3>
 <p style="margin: 0; font-size: 16px; line-height: 1.55; max-width: 520px">Big Little Lies, Casi feliz y All Her Fault.</p>
 </div>
@@ -817,7 +826,7 @@ y la vida cotidiana van dejando atrás.</span></div>
 </button>
 </div>
 <div style="display: flex; flex-direction: column; gap: 14px">
-<p class="note" style="margin: 0">N.º 14 — La 100 FM — 2026 — 5 placas</p>
+<p class="note nro" style="margin: 0">N.º 14 — La 100 FM — 2026 — 5 placas</p>
 <h3 class="ctitle">Tres miniseries para el finde</h3>
 <p style="margin: 0; font-size: 16px; line-height: 1.55; max-width: 520px">Mare of Easttown, Maid y Pequeños fuegos.</p>
 </div>
@@ -839,7 +848,7 @@ y la vida cotidiana van dejando atrás.</span></div>
 <section class="paper" style="padding: 64px 24px 72px; display: flex; flex-direction: column; gap: 40px">
 <div class="ggrid">
 <div style="display: flex; flex-direction: column; gap: 32px">
-<p class="note" style="margin: 0">N.º 04 — La 100 FM — Curaduría propia — 2027</p>
+<p class="note nro" style="margin: 0">N.º 04 — La 100 FM — Curaduría propia — 2027</p>
 <h3 class="gtitle">Aniversarios<br>de películas</h3>
 <div class="rows">
 <div><span class="k">Curaduría</span><span>Todas las películas que en 2027 cumplen un aniversario redondo, elegidas por mí.</span></div>
@@ -877,7 +886,7 @@ y la vida cotidiana van dejando atrás.</span></div>
 <section class="blush" style="padding: 64px 24px 72px; display: flex; flex-direction: column; gap: 40px">
 <div class="ggrid">
 <div style="display: flex; flex-direction: column; gap: 32px">
-<p class="note" style="margin: 0">N.º 05 — TUPD / LAD, UNQ — Propuesta de identidad para redes — 2026</p>
+<p class="note nro" style="margin: 0">N.º 05 — TUPD / LAD, UNQ — Propuesta de identidad para redes — 2026</p>
 <h3 class="gtitle">TUPD / LAD</h3>
 <div class="rows">
 <div><span class="k">Encargo</span><span>Renovar la identidad del Instagram de la Tecnicatura en Producción Digital y la Licenciatura en Artes Digitales.</span></div>
